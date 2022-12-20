@@ -18,7 +18,7 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public List<Car> getCarsByCount(int count) {
-        return carDAO.getCarsByCount(count);
+    public List<Car> getCars() {
+        return carDAO.getCars();
     }
 }

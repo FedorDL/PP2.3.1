@@ -21,12 +21,7 @@ public class CarDAO {
         cars.add(new Car(++CARS_COUNT,"AUDI", "Q7"));
     }
 
-    public List<Car> getCarsByCount(int count) {
-        if (count < 0) {
-            count = 0;
-        } else if (count > 5) {
-            count = 5;
-        }
-        return cars.subList(0, count);
+    public List<Car> getCars() {
+        return cars;
     }
 }
