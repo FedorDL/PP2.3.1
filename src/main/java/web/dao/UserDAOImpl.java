@@ -23,21 +23,17 @@ public class UserDAOImpl implements UserDAO {
         entityManager.persist(user);
     }
 
-    public User showUser (int id) {
+    public User showUser (Long id) {
         return entityManager.find(User.class,id);
     }
 
     @Override
-    public void update(int id, User user) {
-        User userToBeUpdated = showUser(id);
-        userToBeUpdated.setName(user.getName());
-        userToBeUpdated.setLastName(user.getLastName());
-        userToBeUpdated.setAge(user.getAge());
-        entityManager.merge(userToBeUpdated);
+    public void update(User user) {
+        entityManager.merge(user);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         entityManager.remove(showUser(id));
     }
 }

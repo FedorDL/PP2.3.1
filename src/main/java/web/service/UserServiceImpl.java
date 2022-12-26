@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
@@ -31,20 +31,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public User showUser(int id) {
+    @Transactional(readOnly = true)
+    public User showUser(Long id) {
         return userDAO.showUser(id);
     }
 
     @Override
     @Transactional
-    public void update(int id, User user) {
-        userDAO.update(id,user);
+    public void update(Long id, User user) {
+        User userToBeUpdated = showUser(id);
+        userToBeUpdated.setName(user.getName());
+        userToBeUpdated.setLastName(user.getLastName());
+        userToBeUpdated.setAge(user.getAge());
+        userDAO.update(userToBeUpdated);
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public void delete(Long id) {
         userDAO.delete(id);
     }
 }
